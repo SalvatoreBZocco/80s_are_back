@@ -1,0 +1,15 @@
+Web Audio based synthesiser
+
+Should work with an external MIDI keyboard
+
+Two Oscillators, both with at least Local Level, Waveform choice, ADRS, Detune, Octave, Semitone settings
+
+One Global filter with at leaast Attack-Decay, Cutoff, Resonance, EG Intensity, Polarity settings
+
+A Global section for Power On/Off, Volume, Tuning, if possible Glide
+
+In the original synths from the 80's there were only limited voices (8 for single oscillator, 4 for two oscillator settings in the Korg 
+Poly 800  - this is not a limitation anymore, because of Web Audio.  Still, the originals were not respondig to MIDI Velocity, while this 
+project should instead take it into account.  If (or better, when) possible, Pitch Bend Wheel aand Mod Wheel responce should be added
+
+The unit should come with presets, possibly at least 8 at the beginning - future update could be the capabilty of creating new presets
