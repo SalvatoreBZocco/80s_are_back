@@ -1,0 +1,4 @@
+Stable version with 2 problems 
+1 Red - Deprecated function in use
+1 Green - Page layout could be unexpected due to Quirks Mode
+Occasionally, reloading it, 11 more Red problems could be shown, connected to labels, with NO influence on the code.
