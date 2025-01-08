@@ -1,0 +1,370 @@
+<!DOCTYPE html5>
+<html lang="en">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synth_MIDI_B_1.1</title>
+<link rel="icon" href="./img\80.png" type="image/png">
+</head>
+
+
+<style>
+    body {
+        background-color: #0066ff;
+        color: aliceblue;
+    }
+
+    .container {
+        width: 70%;
+        max-width: 600px;
+        padding: 8px;
+        background-color: #0066ff;
+        border-radius: 10px;
+        border: 1.8px solid aliceblue;
+        margin: 17px auto;
+        position: relative;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .container-title {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: aliceblue;
+        color: #0066ff;
+        font-size: 14px;
+        font-weight: bold;
+        font-variant: small-caps;
+        width: 8%;
+        padding: 1px 10px;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .knob-section,
+    .button-section,
+    .slider-section,
+    .preset-section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 1px;
+    }
+
+
+    .preset-btn {
+        width: 70px;
+        height: 50px;
+        background-color: #b6b1a8;
+        /* Colore base per i bottoni */
+        border: 2px solid aliceblue;
+        /* Bordo bianco sottile */
+        border-radius: 5px;
+        color: aliceblue;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        /* Effetto shadow */
+        transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+        /* Transizioni per l'effetto clic */
+    }
+
+    .preset-btn:before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgb(42, 39, 39);
+        position: absolute;
+        top: 4px;
+        left: 28px;
+        box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+        /* Effetto luce */
+        transition: background-color 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .preset-btn span {
+        position: absolute;
+        bottom: 5px;
+        /* Nome del bottone leggermente più in basso */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .preset-btn.active {
+        transform: translateY(2px);
+        /* Simula il bottone "premuto" */
+        background-color: currentColor;
+        /* Cambia colore al bottone attivo */
+        border: 2px solid aliceblue;
+    }
+
+    .preset-btn.active:before {
+        background-color: red;
+        /* Accende la lucina rossa */
+        box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.7), 0px 0px 20px rgba(255, 0, 0, 0.4);
+        /* Ombra più intensa e diffusa */
+    }
+
+    /* Colori specifici per i bottoni */
+    .preset-btn[data-preset="0"] {
+        background-color: rgb(226, 226, 19);
+    }
+
+    .preset-btn[data-preset="1"] {
+        background-color: #E89A0A;
+    }
+
+    .preset-btn[data-preset="2"] {
+        background-color: #EB420A;
+    }
+
+    .preset-btn[data-preset="3"] {
+        background-color: #D0227E;
+    }
+
+    .preset-btn[data-preset="4"] {
+        background-color: #7829D6;
+    }
+
+    .preset-btn[data-preset="5"] {
+        background-color: #235ED6;
+    }
+
+    .preset-btn[data-preset="6"] {
+        background-color: #23AC9E;
+    }
+
+    .preset-btn[data-preset="7"] {
+        background-color: #63BF17;
+    }
+</style>
+
+
+<body>
+    <div class="container">
+        <div class="container-title">Master</div>
+        <div class="knob-section">
+            <div
+                style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 5px;">
+                <webaudio-switch id="startSwitch" src="./img/button_standart-2-2_new2.png"></webaudio-switch>
+                <label for="startSwitch" style="display: block;">On/Off</label>
+
+                <div style="text-align: center; margin-left: 20px;">
+                    <webaudio-knob id="volumeKnob" src="./img/Res.png" diameter="64" sprites="100" value="50" min="1"
+                        max="100" step="1" tooltip="Volume: %s"></webaudio-knob>
+                    <label for="volumeeKnob" style="display: block;">Volume</label>
+                    <webaudio-param link="volumeKnob"></webaudio-param>
+                </div>
+                <div style="text-align: center; margin-left: 20px;">
+                    <webaudio-knob id="octaveKnob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="-1"
+                        max="1" step="1" tooltip="Octave: %s"></webaudio-knob>
+                    <label for="octaveKnob" style="display: block;">Octave</label>
+                    <webaudio-param link="octaveKnob"></webaudio-param>
+                </div>
+                <div style="text-align: center; margin-left: 20px;">
+                    <webaudio-knob id="tuningKnob" src="./img/Res.png" diameter="64" sprites="100" value="440" min="410"
+                        max="470" step="1" tooltip="Tuning: %s"></webaudio-knob>
+                    <label for="tuningKnob" style="display: block;">Tuning</label>
+                    <webaudio-param link="tuningKnob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center; margin-left: 20px;">
+                    <webaudio-knob id="glideKnob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="0"
+                        max="0.20" step="0.01" tooltip="Glide: %s s"></webaudio-knob>
+                    <label for="glideKnob" style="display: block;">Portamento</label>
+                    <webaudio-param link="glideKnob"></webaudio-param>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-title">Filter</div>
+        <div class="knob-section">
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 5px;">
+                <div style="text-align: center;">
+                    <webaudio-knob id="cutoffKnob" src="./img/Res.png" diameter="64" sprites="100" value="1000" min="20"
+                        max="20000" max="20000" step="10" tooltip="Cutoff: %s Hz"></webaudio-knob>
+                    <label for="cutoffKnob" style="display: block;">Cutoff</label>
+                    <webaudio-param link="cutoffKnob"></webaudio-param>
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: -10px; margin-top: 2px;">
+                    <label style="text-align: center;">Lowpass</label>
+                    <webaudio-switch id="cutoffSwitch" src="./img/switch_metal.png"></webaudio-switch>
+                    <label style="text-align: center;">Highpass</label>
+                </div>
+
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="resonanceKnob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="0"
+                        max="20" step="1" tooltip="Resonance (Q): %s"></webaudio-knob>
+                    <label for="resonanceKnob" style="display: block;">Resonance</label>
+                    <webaudio-param link="resonanceKnob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="filterAttackKnob" src="./img/Res.png" diameter="64" sprites="100" value="0"
+                        min="0" max="5" step="0.05" tooltip="Filter Attack: %s"></webaudio-knob>
+                    <label for="filterAttackKnob" style="display: block;">Filter Attack</label>
+                    <webaudio-param link="filterAttackKnob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="filterDecayKnob" src="./img/Res.png" diameter="64" sprites="100" value="0"
+                        min="0" max="5" step="0.01" tooltip="Filter Decay: %s"></webaudio-knob>
+                    <label for="filterDecayKnob" style="display: block;">Filter Decay</label>
+                    <webaudio-param link="filterDecayKnob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="filterSustainKnob" src="./img/Res.png" diameter="64" sprites="100" value="1"
+                        min="0" max="1" step="0.01" tooltip="Filter Sustain: %s"></webaudio-knob>
+                    <label for="filterSustainKnob" style="display: block;">Filter Sustain</label>
+                    <webaudio-param link="filterSustainKnob"></webaudio-param>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-title">Osc 1</div>
+        <div class="knob-section">
+
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 5px;">
+
+                <div>
+                    <webaudio-slider id="sli1" src="./img/vsliderbodyWaves.png" knobsrc="./img/vsliderknoBlu3.png"
+                        tracking="abs" min="0" max="3" width="46" height="102"></webaudio-slider>
+                    <!--<label id="waveLabel">sine</label> -->
+                </div>
+
+                <div style="text-align: center;  margin-left: 10px">
+                    <webaudio-knob id="level1Knob" src="./img/Res.png" diameter="64" sprites="100" value="0.25" min="0"
+                        max="1" step="0.01" tooltip="Level1: %s"></webaudio-knob>
+                    <label for="level1Knob" style="display: block;">Level 1</label>
+                    <webaudio-param link="level1Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center; margin-left: 0px;">
+                    <webaudio-knob id="octave1Knob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="-2"
+                        max="2" step="1" tooltip="Octave1: %s"></webaudio-knob>
+                    <label for="octave1Knob" style="display: block;">Octave 1</label>
+                    <webaudio-param link="octave1Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="attack1Knob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="0"
+                        max="10" step="0.05" tooltip="Attack1: %s"></webaudio-knob>
+                    <label for="attack1Knob" style="display: block;">Attack 1</label>
+                    <webaudio-param link="attack1Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="decay1Knob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="0"
+                        max="5" step="0.05" tooltip="Decay1: %s"></webaudio-knob>
+                    <label for="decay1Knob" style="display: block;">Decay 1</label>
+                    <webaudio-param link="decay1Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="sustain1Knob" src="./img/Res.png" diameter="64" sprites="100" value="1" min="0"
+                        max="1" step="0.01" tooltip="Sustain1: %s"></webaudio-knob>
+                    <label for="sustain1Knob" style="display: block;">Sustain 1</label>
+                    <webaudio-param link="sustain1Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="release1Knob" src="./img/Res.png" diameter="64" sprites="100" value="0"
+                        min="0.00" max="3" step="0.05" tooltip="Release1: %s"></webaudio-knob>
+                    <label for="release1Knob" style="display: block;">Release 1</label>
+                    <webaudio-param link="release1Knob"></webaudio-param>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-title">Osc 2</div>
+        <div class="knob-section">
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 5px;">
+                <div>
+                    <webaudio-slider id="sli2" src="./img/vsliderbodyWaves.png" knobsrc="./img/vsliderknoBlu3.png"
+                        tracking="abs" min="0" max="3" width="46" height="102"></webaudio-slider>
+                    <!--<label id="waveLabel">sine</label> -->
+                </div>
+
+                <div style="text-align: center;  margin-left: 10px">
+                    <webaudio-knob id="level2Knob" src="./img/Res.png" diameter="64" sprites="100" value="0.25" min="0"
+                        max="1" step="0.01" tooltip="Level2: %s"></webaudio-knob>
+                    <label for="level2Knob" style="display: block;">Level 2</label>
+                    <webaudio-param link="level2Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="detune2Knob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="-50"
+                        max="50" step="1" tooltip="Detune2: %s"></webaudio-knob>
+                    <label for="detune2Knob" style="display: block;">Detune 2</label>
+                    <webaudio-param link="detune2Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="attack2Knob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="0"
+                        max="10" step="0.05" tooltip="Attack2: %s"></webaudio-knob>
+                    <label for="attack2Knob" style="display: block;">Attack 2</label>
+                    <webaudio-param link="attack2Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="decay2Knob" src="./img/Res.png" diameter="64" sprites="100" value="0" min="0"
+                        max="5" step="0.05" tooltip="Decay2: %s"></webaudio-knob>
+                    <label for="decay2Knob" style="display: block;">Decay 2</label>
+                    <webaudio-param link="decay2Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="sustain2Knob" src="./img/Res.png" diameter="64" sprites="100" value="1" min="0"
+                        max="1" step="0.01" tooltip="Sustain2: %s"></webaudio-knob>
+                    <label for="sustain2Knob" style="display: block;">Sustain 2</label>
+                    <webaudio-param link="sustain2Knob"></webaudio-param>
+                </div>
+
+                <div style="text-align: center;">
+                    <webaudio-knob id="release2Knob" src="./img/Res.png" diameter="64" sprites="100" value="0"
+                        min="0.00" max="3" step="0.05" tooltip="Release2: %s"></webaudio-knob>
+                    <label for="release2Knob" style="display: block;">Release 2</label>
+                    <webaudio-param link="release2Knob"></webaudio-param>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-title">Presets</div>
+        <div class="preset-section">
+            <div style="display: flex; justify-content: center; gap: 2px; margin-top: 5px;">
+                <button class="preset-btn" data-preset="0"><span>Preset 0</span></button>
+                <button class="preset-btn" data-preset="1"><span>Preset 1</span></button>
+                <button class="preset-btn" data-preset="2"><span>Preset 2</span></button>
+                <button class="preset-btn" data-preset="3"><span>Preset 3</span></button>
+                <button class="preset-btn" data-preset="4"><span>Preset 4</span></button>
+                <button class="preset-btn" data-preset="5"><span>Preset 5</span></button>
+                <button class="preset-btn" data-preset="6"><span>Preset 6</span></button>
+                <button class="preset-btn" data-preset="7"><span>Preset 7</span></button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="./app.js" async></script>
+    <script src="./webaudio-controls.js"></script>
+
+</body>
+
+</html>
