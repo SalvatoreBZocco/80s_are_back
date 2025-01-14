@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>80sRB</title>
+	<link rel="icon" href="img\80.png" type="image/png">
+<style type="text/css">
+<!--
+.Testoazzurroo {
+	color: #06C;
+	font-family: Verdana, Geneva, sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	text-align: justify;
+}
+.Titolo {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 21px;
+	font-style: italic;
+	text-align: center;
+	vertical-align: baseline;
+	font-weight: bold;
+}
+.grassetto {
+	font-weight: bold;
+}
+body,td,th {
+	font-family: Verdana, Geneva, sans-serif;
+	line-height: normal;
+	font-weight: bold;
+}
+.Testolink {
+	color: #FFFFFF;
+	line-height: 1em;
+}	
+.Testolink2 {
+	color: #FFFFFF;
+	line-height: 0em;
+}
+.indirizzo {	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+	color: #F8F;
+}
+.indirizzo {	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	line-height: normal;
+	color: #FF6FCF;
+	font-style: normal;
+	white-space: normal;
+}
+.Elenchi {
+	font-family: Verdana, Geneva, sans-serif;
+	color: #FFF;
+}
+.Piede {	font-family: Verdana, Geneva, sans-serif;
+}
+.grassettocorsivo {
+	font-family: Verdana, Geneva, sans-serif;
+	font-style: italic;
+}
+.infondo {
+	font-weight: normal;
+	font-size: 15px;
+}
+.infondo2 {
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 0em;
+}
+.Testoazzurro {
+	text-align: left;
+}
+.Testoazzurro {
+	text-align: justify;
+}
+testogiustificato {
+	text-align: justify;
+}
+.giustificato {
+	text-align: left;
+}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="192" height="40" align="center" bgcolor="#FFFFFF" scope="col"><a href="https://www.polimi.it"/a><img src="img/PolimiLogo.png" alt="PoliMi" width="200" height="73" align="middle" longdesc="Logo Politecnico di Milano" </td>
+    <th width="85%" scope="col"><table width="90%" border="0" align="center">
+      <tr>
+        <th width="25" scope="col"><a href="home.html"><img src="img/home.png" width="140" height="30" alt="web site Home" /></a></th>
+        <th width="25" scope="col"><a href="SYNTH_MIDI B_2.0/80sRB-2-0 wip.html"><img src="img/-80sRB-.png" width="140" height="30" alt="80sRB" /></a></th>
+        <th width="25" scope="col"><a href="SYNTH_MIDI B_2.0/80sL wip.html"><img src="img/80sLimited.png" width="140" height="30" alt="80s Limited" /></a></th>
+        <th width="25" scope="col"><a href="80sVT_0.html"><img src="img/VirtualTour.png" width="140" height="30" alt="Virtual Tour" /></a></th>
+        <th width="25" scope="col"><a href="wrapUp.html"><img src="img/wrap up.png" width="140" height="30" alt="Wrap Up" /></a></th>
+      </tr>
+    </table></th>
+  </tr>
+  <tr>
+    <td width="200" align="center" valign="top" bgcolor="#0066FF" scope="row"><table width="192" border="0" align="center">
+      <tr>
+        </tr>
+     <tr class="Elenchi">
+        <th valign="top" scope="row"></th>
+        <th valign="top" scope="row">
+          <h4 align="center" class="Elenchi">ACTaM 2024-25</h4>
+          <p><img src="img/80sAreBack_Vertical_logo.png" alt="80sAreBack_logo" width="168" height="500" align="center" longdesc="80sAreBack_Vertical_logo" /></p></th></tr>
+		</table>
+    <td width="85%" align="center" valign="top"><blockquote>
+      <h2 align="left" class="Testoazzurroo"><span class="Titolo">80sRB  -  User Guide</span></h2>
+      <h5 align="left" class="Testoazzurroo"><strong>80sRB</strong> has been written and tested under <strong>macOs Sonoma</strong> &nbsp;v. 14.5 - <strong>Windows 11</strong> v. 24h2.&nbsp; In order to operate it, the user needs a <strong>MIDI keyboard</strong>.&nbsp; The 80sRB version responds to MIDI Channels 1-2-3 and accepts MIDI noteOn/Off (or noteOn with '0' velocity), note velocity,  Pitch Bend standard messages, with unlimited polyphony. The output is mono, @44.1Kh, 16bits before output conversion.&nbsp; Same for the <strong>80s Limited</strong> version, but limited, as many of the market models of the early '80s, to <strong>8 oscillators (4 notes), with MIDI velocity fixed @127.</strong></h5>
+      <h5 align="left" class="Testoazzurroo">For experienced users, all the parameters should be pretty straight forward. If so, please refer below to the section '<strong><em>Tips and Tricks'</em></strong>. Just remember that WebAudioAPI needs to be activated by the user at the beginning of each session.&nbsp;</h5>
+      <h5 align="left" class="Testoazzurroo">All the knobs have a tooltip above with the name of the parameter and a reading below; both report the parameter value.&nbsp; Readings are fields where values could be highlighted and modified by typing a new value and pressing &lt;enter&gt;.&nbsp; Out of range values are accepted as the highest/lowest settings.&nbsp; Incorrect values are displayed as 'NaN' (Not a Number) and the behavior of the setting is unpredictable.&nbsp;&nbsp;</h5>
+      <h5 align="left" class="Testoazzurroo"><strong><em>Master Section </em></strong>- <strong>On/off Switch</strong> to activate/deactivate Audio Context;&nbsp; <strong>Volume</strong>  sets the global volume of the output from 0.00 (0%) to 1.00 (100%);&nbsp; <strong>Octave</strong> setting allows the range of the output to be commuted ± 1 octave;&nbsp; <strong>Tuning</strong> decides the global tuning in the range of 410-470, with nominal value @ A4=440;&nbsp; <strong>Portamento </strong>(some calls it 'Slide'), when activated (&gt;0), allows the bending, from the last note played, to the new note in execution - settings from 0.00 to 0.20 seconds.</h5>
+      <h5 align="left" class="Testoazzurroo"><strong><em>Filter Section </em></strong>- <strong>Cutoff</strong> sets the cutoff frequency in the audible range;&nbsp; <strong>Lowpass/Highpass Switch</strong> toggles between the two available filters;&nbsp; <strong>Resonance</strong>  sets the 'Q' factor (1/Octave) @cutoff frequency in the range 0-20;&nbsp; <strong>Attack-Decay</strong> settings from 0.00 to 5.00 seconds;&nbsp; <strong>Sustain</strong> decides the target percentage of the filter intervention, after Decay, from 0.00 (0%) to 1.00 (100%).</h5>
+      <h5 align="left" class="Testoazzurroo"><strong><em>Oscillator 1 Section </em></strong>- <strong>Wave Choice</strong> decides, among four possible values (top-bottom: Square - Triangle - Sawtooth - Sine), the basic waveform applied;&nbsp; <strong>Level</strong> sets the local volume of the Oscillator from 0.00 (0%) to 1.00 (100%); &nbsp;<strong>Octave</strong> setting allows the range of the Oscillator to be commuted among ± 2 octaves;&nbsp; <strong>Attack-Decay</strong> settings from 0.00 to 5.00 seconds;&nbsp; <strong>Sustain</strong> decides the target percentage of the level intervention, afted Decay, from 0.00 (0%) to 1.00 (100%);&nbsp; <strong>Release</strong> decides the time the Oscillator scales off to 0 level after NoteOff - settings from 0.00 to 3.00 seconds.</h5>
+	  <h5 align="left" class="Testoazzurroo"><strong><em>Oscillator 2 Section </em></strong>-<strong> </strong>Pretty much the same as Oscillator 1, the only difference being the&nbsp;<strong>Octave</strong> control replaced by:&nbsp; <strong>Detune</strong> setting decides the detuning of the Oscillator from -50 cents (half a semitone below) to +50 cents (half a semitone above tuning reference.</h5>
+	  <h5 align="left" class="Testoazzurroo"><strong><em>Presets </em></strong>-<strong> </strong>8 numbered memories to recall preset settings, where <strong>Preset 0</strong>  goes vanilla (default settings).</h5>
+      <h5 align="left" class="Testoazzurroo"><strong><em>Tips and Tricks </em></strong>-<strong> </strong>The two-stage <strong>Filter settings</strong> are among the most powerful and critical of the whole instrument. Default value for CO <span class="Testoazzurroo1">(Cutoff Frequency)</span> = 1,000 is a reasonable value to have sounds with both the LP (Lowpass)/HP (Highpass) setting. Depending on the use, we recommend to start setting (first) CO  = 20,000 for LP / 20 for HP, in order to completely 'close' the filter and allow sounds to span on the whole audible range. Then, when setting different values (experiment with something like CO = 120 with LP, 600 with HP), please note  that FS (Sustain) decides the the final results, in terms of final filter level percentage after FD (Decay). FA (Attack) leads to the CO frequency while FD (Decay), instead, behaves the opposite for LP and HP. For LP it 'closes' again while, for HP, it opens completely to 20,000. This, while not intuitive, is consistent with the so-called EG (Envelop Generator) inversion. Moreover, please note that settings with FA &gt;0 and FD = 0, if FS=1, could re-trigger the sound with LP and cut it off completely with HP. Setting FA=0 and FD&gt;0 reverse the LP to a 'closing HP' (the sound 'opens' to the whole audible range) and the HP to a closing LP (the sound 'closes' and what remains goes from 20 Hz to CO setting). Opposite for settings with FA&gt;0 and FD=0. Globally, if CO value is set to extreme values, the whole filter will act as a reversable Volume EG. With some experiments, it will not be that difficult to become confident and to obtain remarkable results. Last suggestion here: leave the RS (Resonance) setting for the last and it will be much easier to control it.</h5>
+      <h5 align="left" class="Testoazzurroo">We suggest care with <strong>Volume settings</strong>, it is not by chance that default values are 0.25 for the local Levels and 0.50 for the Master Volume. Higher settings could easily lead to distorted output - they should only be used with care and in the extreme cases where HP filter works heavily.</h5>
+      <h5 align="left" class="Testoazzurroo"><strong>Oscillators settings</strong> - we strongly suggest to set one Oscillator first (with the level of the other=0), than the other. Probably, it will be easier to start with Oscillator 2, than move to Oscillator 1, deciding its Octave setting and the, finally, mix them together and experimenting with the Detune setting of the second Oscillator, to make the two 'breathe together'.</h5>
+      <h5 align="left" class="Testoazzurroo">Finally, users with good experience on Synths, but new to web based software, will immediately find out that <strong>Parameter settings</strong> depend heavily on WebAudioAPI and the available ranges and curves and behaviors are limited and sometimes, quite frankly, disappointing. We've done our best to 'bend the rules' and approximate them to became acceptable... Still, in case, do not loose  hope and find out, with trials and errors, what works the best. As we have already experienced, sometimes nothing will change between 1.00 and 0.50, while maybe the solution will be in between 0.03 and 0.05!</h5>
+      <h5 align="left" class="Testoazzurroo">We wish you to <strong>HAVE FUN</strong>, at least as much as we had while creating this instrument.</h5>
+    </blockquote>
+  </tr>
+  <tr align="center" bgcolor="#0066FF">
+    <td colspan="2" class="indirizzo" scope="row"><table width="100%" border="0">
+      <tr>
+        <th width="8" height="100" scope="col">&nbsp;</th>
+        <th width="195" scope="col">&nbsp;</th>
+        <th scope="col"><p class="Testolink"><span class="Piede"><span class="Elenchi"><span class="infondo"><span class="infondo">ACTaM 2024/25 - Project: 80's aRe Back</span></span></span></span></p>
+          <p class="Testolink"><span class="infondo"><span class="infondo"><span class="Elenchi">Corrado Amedeo Bertazzoni 10808310 - Salvatore Benvenuto Zocco 11035358</span></span></span></p>
+          <h6 class="Testolink2">If names, products and brands are somewhere and somehow quoted, they all belong to their respective owners - No cookies here -&nbsp;</h6>
+          <h6 class="Testolink2">No sound engineers' ears have been tortured within this project, at least not intentionally - most of all: HAVE FUN!</h6></th>
+        <th width="201" scope="col">&nbsp;</th>
+        <th width="8" scope="col">&nbsp;</th>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

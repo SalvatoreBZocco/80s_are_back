@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synth_MIDI_B_2.0</title>
+<link rel="icon" href="img/80.png" type="image/png">
+
+<head> 
+    <style>
+        body {
+            background-color: rgb(19, 96, 164);
+            color: aliceblue;
+            display: flex;
+            justify-content: center;
+            flex-direction: column; /* Posiziona elementi uno sopra l'altro */
+            align-items: center; /* Centra gli elementi orizzontalmente */
+        }
+
+
+        .top-image img {
+            margin-top: -4px;
+            width: 748px; /* Larghezza immagine sopra */
+            height: 680px; /* Altezza immagine sopra */
+            transition: transform 0.2s ease;
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: space-between; /* Distribuisce gli elementi */
+            align-items: center; /* Centra verticalmente */
+            width: 100%; /* Usa tutta la larghezza */
+            max-width: 300px;
+            padding: 10px;
+            background-color: rgb(19, 96, 164);
+            border-radius: 5px;
+            margin: 8px auto;
+        }
+
+        .bottom img {
+            width: 140px;
+            height: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+      
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Immagine centrale sopra -->
+    <div class="top-image">
+        <img src="./img/80-VT-4.png" alt="Central Top Image">
+    </div>
+
+    <!-- Barra con le immagini sotto -->
+    <div class="bottom">
+        <!-- Immagine sinistra -->
+        <a href="80sVT_3.html"><img src="img/back.png" alt="left arrow"></a>
+
+        <!-- Immagine destra -->
+        <a href="home.html"><img id="rightImage" src="img/Home.png" alt="web site home"></a>
+    </div>
+
+    <script src="./app80sRB.js" async></script>
+    <script src="./webaudio-controls.js"></script>
+
+</body>
+
+</html>
